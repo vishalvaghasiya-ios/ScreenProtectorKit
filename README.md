@@ -29,105 +29,87 @@ It blocks **screenshots**, **screen recordings**, and hides content in the **app
 
    ```text
    https://github.com/vishalvaghasiya-ios/ScreenProtectorKit.git
+	```
+   
+3.	Select the latest version (e.g. 1.0.0).
+4.	Import it into your Swift files:
 
-	3.	Select the latest version (e.g. 1.0.0).
-	4.	Import it in your Swift files:
+	```text
+	import ScreenProtectorKit
+	```
 
-import ScreenProtectorKit
-
-
-
-⸻
+---
 
 🚀 Usage
 
-1. Protect Entire App
+1. Protect Entire App (AppDelegate.swift)
+	```text
+	ScreenProtectorKit.shared.enableProtection(.fullApp, overlay: .black)
+	```
 
-ScreenProtectorKit.shared.enableProtection(.fullApp, overlay: .black)
-
-
-⸻
 
 2. Protect a Single Screen
-
-override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    ScreenProtectorKit.shared.enableProtection(.singleScreen(self), overlay: .white)
-}
-
-override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    ScreenProtectorKit.shared.disableProtection()
-}
-
-
-⸻
-
-3. Protect Multiple Screens
-
-let controllers = [profileVC, paymentVC]
-
-let customOverlay = UILabel()
-customOverlay.text = "🔒 Protected Content"
-customOverlay.textAlignment = .center
-customOverlay.font = .boldSystemFont(ofSize: 20)
-customOverlay.backgroundColor = .black
-customOverlay.textColor = .white
-
-ScreenProtectorKit.shared.enableProtection(
-    .multipleScreens(controllers),
-    overlay: .custom(customOverlay)
-)
+	```text
+	override func viewDidAppear(_ animated: Bool) {
+	    super.viewDidAppear(animated)
+	    ScreenProtectorKit.shared.enableProtection(.singleScreen(self), overlay: .white)
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+	    super.viewWillDisappear(animated)
+	    ScreenProtectorKit.shared.disableProtection()
+	}
+	```
 
 
-⸻
+3. Protect Multiple Screens (AppDelegate.swift)
+	```text
+	let controllers = [profileVC, paymentVC]
+	
+	let customOverlay = UILabel()
+	customOverlay.text = "🔒 Protected Content"
+	customOverlay.textAlignment = .center
+	customOverlay.font = .boldSystemFont(ofSize: 20)
+	customOverlay.backgroundColor = .black
+	customOverlay.textColor = .white
+	
+	ScreenProtectorKit.shared.enableProtection(
+	    .multipleScreens(controllers),
+	    overlay: .custom(customOverlay)
+	)
+	```
+
 
 4. Disable Protection
-
-ScreenProtectorKit.shared.disableProtection()
-
-
-⸻
+	```text
+	ScreenProtectorKit.shared.disableProtection()
+	```
+ 
 
 5. Protect App Switcher Preview
+	```text
+	func sceneWillResignActive(_ scene: UIScene) {
+	    ScreenProtectorKit.shared.enableProtection(.fullApp, overlay: .black)
+	}
+	
+	func sceneDidBecomeActive(_ scene: UIScene) {
+	    ScreenProtectorKit.shared.disableProtection()
+	}
+	```
 
-func sceneWillResignActive(_ scene: UIScene) {
-    ScreenProtectorKit.shared.enableProtection(.fullApp, overlay: .black)
-}
-
-func sceneDidBecomeActive(_ scene: UIScene) {
-    ScreenProtectorKit.shared.disableProtection()
-}
-
-
-⸻
+---
 
 🏷 Versioning
 
-This package follows Semantic Versioning:
-	•	1.0.0 → Initial stable release
+	• 1.0.0 → Initial stable release
 
-To create a new version:
-
-git tag 1.0.0
-git push origin 1.0.0
-
-
-⸻
 
 🛠 Requirements
 	•	iOS 13.0+
 	•	Swift 5.9+
 	•	Xcode 15+
 
-⸻
 
 👨‍💻 Author
 
-Maintained by Vishal Vaghasiya
-
-⸻
-
-📄 License
-
-This project is licensed under the MIT License — feel free to use it in your projects.
+Maintained by **Vishal Vaghasiya**
